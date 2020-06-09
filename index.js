@@ -32,6 +32,6 @@ application.get("/", (req, res) => {
 
 application.use("/user", userController);
 
-application.listen("3000", () => {
+application.listen("4000", () => {
   console.log("server started");
 });
