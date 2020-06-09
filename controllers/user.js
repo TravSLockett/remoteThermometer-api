@@ -47,14 +47,14 @@ router.post("/push", (req, res) => {
   });
 });
 
+//getting the data
 router.get("/list", (req, res) => {
-  //getting the data
   tempModel.find((err, docs) => {
     if (!err) {
       console.log(docs);
       res.send(docs);
     } else {
-      res.send("user controller YES error");
+      res.send("There was an error requesting the data");
     }
   });
   //res.send("userInfo Controller");
