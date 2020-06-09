@@ -1,0 +1,18 @@
+<h1>Tempratures</h1>
+
+<table>
+    <tr>
+        <th>
+            CPU
+        </th>
+        <th>
+            GPU
+        </th>
+    </tr>
+    {{#each data}}
+    <tr>
+        <th>{{this.cpu}}</th>
+        <th>{{this.gpu}}</th>
+    </tr>
+    {{/each}}
+</table>
