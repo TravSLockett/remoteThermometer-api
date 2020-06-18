@@ -13,3 +13,4 @@ mongoose.connect(
 );
 
 const temp = require("./temp.model");
+const user = require("./user.model");
