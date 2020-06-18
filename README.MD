@@ -1,8 +1,30 @@
 the url to access the api is:
 
-my_ip_addr:3000/user/list -> for listing the current database
-my_ip_addr:3000/user/push -> for posting the data
--> please occupy the body with cpu and gpu tempretures
--> on Postman, instead of Json Raw, select "x-www-form-urlencoded", otherwise it will not work.
+GET: my_ip:1205/temp/list -> for listing the current database of temperature //
+
+POST: my_ip:1205/temp/push -> for posting temperature data, REMEMBER to use JSON in the body //
+
+example:
+{
+"cpu": 12,
+"gpu": 12
+
+}
+
+POST: my_ip:1205/user/signup -> for signing up with username and password. REMEMBER to use JSON in the body //
+
+example:
+{
+"username": "Mikey",
+"password": "12345"
+}
+
+POST: my_ip:1205/user/signin -> for signing in with the existing username and password, REMEMBER to use JSON in the body //
+
+example:
+{
+"username": "Mikey",
+"password": "12345"
+}
 
 all the dependencies shoudl be in the bundle, but for specific versions, see package.json
