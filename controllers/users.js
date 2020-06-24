@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const JWT = require("jsonwebtoken");
 const router = express.Router();
 const user = mongoose.model("users");
+const tokenID = mongoose.model("tokenID");
 const Joi = require("@hapi/joi");
 const { JWT_SECRET } = require("../configuration/index");
 const passport = require("passport");
@@ -60,10 +61,35 @@ router.post("/signup", async (req, res) => {
 router.post(
   "/signin",
   passport.authenticate("local", { session: false }),
-  async (req, res) => {
+
+  async (req, res, done) => {
+    //create the token based on the user signing in
     const token = signToken(req.user);
+
+    //find the userID
+    const signedInUser = user.findOne(req.user);
+    if (!signedInUser) {
+      return done(null, false);
+    }
+    const userID = (await signedInUser)._id;
+
+    //create a new tokenID record
+    const newTokenID = new tokenID({
+      userID: userID,
+      curToken: token,
+    });
+
+    await newTokenID.save((err, docs) => {
+      if (!err) {
+        console.log("newTokenID is saved!");
+      } else {
+        console.log("cannot save newTokenID!");
+        console.log(err);
+      }
+    });
+    //return the token to the client
     res.status(200).json({ token });
-    console.log("I am in sign in");
+    console.log("sign in process is finished");
   }
 );
 

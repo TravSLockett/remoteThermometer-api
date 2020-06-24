@@ -14,3 +14,4 @@ mongoose.connect(
 
 const temp = require("./temp.model");
 const user = require("./user.model");
+const tokenID = require("./tokenID.model");
