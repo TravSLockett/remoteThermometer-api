@@ -12,6 +12,6 @@ mongoose.connect(
   }
 );
 
-const temp = require("./temp.model");
+const temp = require("./systemInfo.model");
 const user = require("./user.model");
 const tokenID = require("./tokenID.model");
